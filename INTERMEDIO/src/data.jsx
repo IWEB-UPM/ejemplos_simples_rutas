@@ -1,53 +1,65 @@
-let invoices = [
+/** fichero que simula una Base de datos
+ * Ahora mismo esta en un array de recibos pero podria ser una base de datos en v2
+ */
+
+
+let recibos = [
   {
-    name: "Santa Monica",
+    name: "Amazon",
     number: 1995,
     amount: "$10,800",
     due: "12/05/1995"
   },
   {
-    name: "Stankonia",
+    name: "Viajes El Corte Ingles",
     number: 2000,
     amount: "$8,000",
     due: "10/31/2000"
   },
   {
-    name: "Ocean Avenue",
+    name: "El Cortes Ingles",
     number: 2003,
     amount: "$9,500",
     due: "07/22/2003"
   },
   {
-    name: "Tubthumper",
+    name: "Media Markt",
     number: 1997,
     amount: "$14,000",
     due: "09/01/1997"
   },
   {
-    name: "Wide Open Spaces",
+    name: "PC Componentes",
     number: 1998,
     amount: "$4,600",
-    due: "01/27/2998"
+    due: "01/27/1998"
   }
 ];
 
-export function getInvoices() {
-  return invoices;
+
+
+
+/**
+ * 
+ * @returns {Recibo[]}
+ */
+export function getRecibos() {
+  return recibos;
 }
 
 /**
  * @param {number} number
- * @returns {Invoice}
+ * @returns {Recibo}
  */
-export function getInvoice(number) {
-  return invoices.find(invoice => invoice.number === number);
+export function getRecibo(number) {
+  return recibos.find(recibo => recibo.number === number);
 }
 
 /**
  * @param {number} number
  * @returns {void}
  */
-export function deleteInvoice(number) {
-  invoices = invoices.filter(invoice => invoice.number !== number);
+export function deleteRecibo(number) {
+  recibos = recibos.filter(recibo => recibo.number !== number);
 }
 

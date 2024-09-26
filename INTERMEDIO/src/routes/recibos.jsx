@@ -1,27 +1,20 @@
 import * as React from 'react';
-
-import {
-  useLocation,
-  NavLink,
-  Outlet,
-  useSearchParams,
-} from 'react-router-dom';
-import { getInvoices } from '../data';
+import {  useLocation,  NavLink,  Outlet,  useSearchParams} from 'react-router-dom';
+import { getRecibos } from '../data';
 
 function QueryNavLink({ to, ...props }) {
   let location = useLocation();
   return <NavLink to={to + location.search} {...props} />;
 }
 
-export default function Invoices() {
-  let invoices = getInvoices();
+export default function Recibos() {
+  let recibos = getRecibos();
   let [searchParams, setSearchParams] = useSearchParams({ replace: true });
 
   return (
     <div style={{ display: 'flex' }}>
       <nav style={{ borderRight: 'solid 1px', padding: '1rem' }}>
-        <input
-          value={searchParams.get('filter') || ''}
+        <input value={searchParams.get('filter') || ''}
           onChange={(event) => {
             let filter = event.target.value;
             if (filter) {
@@ -31,16 +24,14 @@ export default function Invoices() {
             }
           }}
         />
-        {invoices
-          .filter((invoice) => {
+        {recibos.filter((recibo) => {
             let filter = searchParams.get('filter');
             if (!filter) return true;
-            let name = invoice.name.toLowerCase();
+            let name = recibo.name.toLowerCase();
             return name.startsWith(filter.toLowerCase());
-          })
-          .map((invoice) => (
+          }).map((recibo) => (
             <QueryNavLink
-              key={invoice.number}
+              key={recibo.number}
               style={({ isActive }) => {
                 return {
                   display: 'block',
@@ -48,9 +39,9 @@ export default function Invoices() {
                   color: isActive ? 'red' : '',
                 };
               }}
-              to={`/invoices/${invoice.number}`}
+              to={`/recibos/${recibo.number}`}
             >
-              {invoice.name}
+              {recibo.name}
             </QueryNavLink>
           ))}
       </nav>
