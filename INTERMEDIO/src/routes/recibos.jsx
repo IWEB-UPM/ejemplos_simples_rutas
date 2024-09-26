@@ -1,15 +1,10 @@
 import * as React from 'react';
-import {  useLocation,  NavLink,  Outlet,  useSearchParams} from 'react-router-dom';
+import {  NavLink,  Outlet,  useSearchParams} from 'react-router-dom';
 import { getRecibos } from '../data';
-
-function QueryNavLink({ to, ...props }) {
-  let location = useLocation();
-  return <NavLink to={to + location.search} {...props} />;
-}
 
 export default function Recibos() {
   let recibos = getRecibos();
-  let [searchParams, setSearchParams] = useSearchParams({ replace: true });
+  let [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div style={{ display: 'flex' }}>
@@ -18,9 +13,9 @@ export default function Recibos() {
           onChange={(event) => {
             let filter = event.target.value;
             if (filter) {
-              setSearchParams({ filter }, { replace: true });
+              setSearchParams({ filter });
             } else {
-              setSearchParams({}, { replace: true });
+              setSearchParams({});
             }
           }}
         />
@@ -30,8 +25,7 @@ export default function Recibos() {
             let name = recibo.name.toLowerCase();
             return name.startsWith(filter.toLowerCase());
           }).map((recibo) => (
-            <QueryNavLink
-              key={recibo.number}
+            <NavLink key={recibo.number}
               style={({ isActive }) => {
                 return {
                   display: 'block',
@@ -42,7 +36,7 @@ export default function Recibos() {
               to={`/recibos/${recibo.number}`}
             >
               {recibo.name}
-            </QueryNavLink>
+            </NavLink>
           ))}
       </nav>
       <Outlet />
