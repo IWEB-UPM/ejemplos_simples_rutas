@@ -34,7 +34,8 @@ export default function LandingRutas2(props){
       <nav style={{borderBottom: "solid 1px", paddingBottom: "1rem"}}>
         <Link to="/">Home</Link>|{" "}
         <Link to="/users/1">usuario 1</Link> |{" "}
-        <Link to="/users/2">usuario 2</Link> |{" "}        
+        <Link to="/users/2">usuario 2</Link> |{" "} 
+        <Link to="/users/3">usuario 3</Link> |{" "} 
         <Link to="/rutarota">Ruta rota</Link>
       </nav>
       <Routes>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 export default function Usuario(props){
   let {userId} = useParams();
 
-  let usuario = props.users[userId];
+  let usuario = props.users[userId-1];
 
   return <div className="my-user">
     <b>{props.productName}</b>
